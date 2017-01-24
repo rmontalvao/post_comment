@@ -10,7 +10,8 @@
         <style>
             body 		{ padding-top:30px; }
             form 		{ padding-bottom:20px; }
-            .comment 	{ padding-bottom:20px; }
+            .post 	{ padding-bottom:30px; }
+            .comment 	{ padding-bottom:10px; }
         </style>
 
         <!-- JS -->
@@ -41,7 +42,7 @@
                     <input type="text" class="form-control input-lg" name="post" ng-model="postData.text" placeholder="Say what you have to say">
                 </div>
                 <div class="form-group text-right">	
-                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Create Post</button>
                 </div>
             </form>
 
@@ -56,12 +57,12 @@
             <!-- THE POSTS -->
             <!-- hide these posts if the loading variable is true -->
             <div class="post" ng-hide="loading" ng-repeat="post in posts">
-                <h3>Post #{{ post.id}} <small>by : {{ post.user.name}}</small></h3>
+                <h2>Post #{{ post.id}} <small>by : {{ post.user.name}}</small></h2>
                 <p>{{ post.text}}</p>
                 <!--<p><a href="#" ng-click="deletePost(post.id)" class="text-muted">Delete</a></p>-->
                 <!-- THE COMMENTS -->
                 <div class="comment" ng-hide="loading" ng-repeat="comment in post.comments">
-                    <h3>Comment #{{ comment.id}} <small>by {{ comment.user.name}}</small></h3>
+                    <h4>Comment #{{ comment.id}} <small>by {{ comment.user.name}}</small></h4>
                     <p>{{ comment.text}}</p>
 
                     <!--<p><a href="#" ng-click="deleteComment(comment.id)" class="text-muted">Delete</a></p>-->
@@ -72,7 +73,7 @@
                         <input type="text" class="form-control input-lg" name="comment" ng-init="commentData[post.id]={}" ng-model="commentData[post.id].text" placeholder="Comment.....">
                     </div>
                     <div class="form-group text-right">	
-                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-lg">Comment</button>
                     </div>
                 </form>
             </div>
