@@ -1,0 +1,17 @@
+<!--<h1>Home</h1>
+<p>You're logged in!!</p>
+<p><a href="#/login">Logout</a></a></p>-->
+
+<div class="col-md-6 col-md-offset-3">
+    <h1>Hi {{loginUser.username}}!</h1>
+    <p>You're logged in with Angular 2!!</p>
+    <h3>All registered users:</h3>
+    <ul>
+        <li ng-repeat="user in users">
+            {{user.user_name}} ({{user.email}})
+            - <a href="#/profile/{{user.id}}" >Profile</a>
+            <a href="#" ng-click="deleteuser(user.id)">Delete</a>
+        </li>
+    </ul>
+    <p><a href="#/login">Logout</a></p>
+</div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller {
 
@@ -12,9 +13,12 @@ class HomeController extends Controller {
         return View::make('hello');
     }
 
-    public function doLogin($id) {
-        $users = config('user');
-        $userdata = $users[$id];
+    public function doLogin() {
+
+        $userdata = array(
+            'email' => Input::get('email'),
+            'password' => Input::get('password')
+        );
 
         // attempt to do the login
         if (Auth::attempt($userdata)) {

@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('login/{id}', array('uses' => 'HomeController@doLogin'));
+Route::post('doLogin', array('uses' => 'HomeController@doLogin'));

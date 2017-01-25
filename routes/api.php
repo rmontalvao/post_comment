@@ -20,4 +20,6 @@ Route::group([
     Route::resource('comments', 'CommentController', array('except' => array('create', 'edit', 'update')));
 
     Route::resource('posts', 'PostsController', array('except' => array('create', 'edit', 'update')));
+    
+    Route::resource('users', 'UserController', array('except' => array('create', 'edit', 'update')));
 });
