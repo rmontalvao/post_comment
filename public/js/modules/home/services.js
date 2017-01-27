@@ -1,14 +1,15 @@
 'use strict';
 
-angular.module('User').factory('UserService', ['$http', function ($http) {
+angular.module('User').factory('UserService', ['$http','$rootScope', function ($http,$rootScope) {
         var user = {};
+        var api_token = $rootScope.globals.currentUser.authdata;
 
         user.GetAll = function () {
-            return $http.get('api/users');
+            return $http.get('api/users'+"?api_token="+api_token);
         };
 
         user.GetById = function (id) {
-            return $http.get('api/users/' + id);
+            return $http.get('api/users/' + id+"?api_token="+api_token);
         };
 
         user.GetByUsername = function (username) {

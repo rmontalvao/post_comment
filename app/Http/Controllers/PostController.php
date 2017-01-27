@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Post;
+use App\Like;
+use Illuminate\Support\Facades\Auth;
 
-class PostsController extends Controller {
+class PostController extends Controller {
 
     /**
      * Send back all posts as JSON
@@ -14,7 +16,7 @@ class PostsController extends Controller {
      * @return Response
      */
     public function index() {
-        $posts = Post::with('user','comments.user')->get();
+        $posts = Post::with('user', 'comments.user', 'likes')->get();
         return response()->json($posts, 200);
     }
 
@@ -49,6 +51,36 @@ class PostsController extends Controller {
      */
     public function destroy($id) {
         Post::destroy($id);
+        return response()->json(array('success' => true), 200);
+    }
+
+    public function like($postId) {
+
+        $existing_like = Like::wherePostId($postId)->whereUserId(Auth::id())->first();
+
+        if (is_null($existing_like)) {
+            Like::create([
+                'post_id' => $postId,
+                'user_id' => Auth::id(),
+                'liked' => 1,
+                'disliked' => 0
+            ]);
+        }
+        return response()->json(array('success' => true), 200);
+    }
+
+    public function dislike($postId) {
+
+        $existing_like = Like::wherePostId($postId)->whereUserId(Auth::id())->first();
+
+        if (is_null($existing_like)) {
+            Like::create([
+                'post_id' => $postId,
+                'user_id' => Auth::id(),
+                'liked' => 0,
+                'disliked' => 1
+            ]);
+        }
         return response()->json(array('success' => true), 200);
     }
 

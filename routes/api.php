@@ -15,11 +15,14 @@ use Illuminate\Http\Request;
 
 
 Route::group([
-    'middleware' => 'api'
+    'middleware' => 'auth:api'
         ], function () {
     Route::resource('comments', 'CommentController', array('except' => array('create', 'edit', 'update')));
 
-    Route::resource('posts', 'PostsController', array('except' => array('create', 'edit', 'update')));
-    
+    Route::resource('posts', 'PostController', array('except' => array('create', 'edit', 'update')));
+
     Route::resource('users', 'UserController', array('except' => array('create', 'edit', 'update')));
+
+    Route::post('post/like/{postId}', 'PostController@like');
+    Route::post('post/dislike/{postId}', 'PostController@dislike');
 });

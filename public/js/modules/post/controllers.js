@@ -9,7 +9,6 @@ angular.module('Post')
                         $scope.postData = {};
                         $scope.commentData = {};
                         $scope.loginUser = $rootScope.globals.currentUser;
-                        console.log($rootScope.globals);
                         // loading variable to show the spinning loading icon
                         $scope.loading = true;
                         // get all the comments first and bind it to the $scope.comments object
@@ -46,6 +45,25 @@ angular.module('Post')
                             PostService.CreateComment($scope.commentData[postId])
                                     .success(function (data) {
                                         $scope.commentData = {};
+                                        // if successful, we'll need to refresh the post list
+                                        PostService.GetAll()
+                                                .success(function (getData) {
+                                                    $scope.posts = getData;
+                                                    $scope.loading = false;
+                                                });
+                                    })
+                                    .error(function (data) {
+                                        console.log(data);
+
+                                    });
+                        };
+                        
+                        $scope.likePost = function(postId){
+                            $scope.loading = true;
+                            
+                            PostService.Like(postId)
+                                    .success(function (data) {
+                                        $scope.postData = {};
                                         // if successful, we'll need to refresh the post list
                                         PostService.GetAll()
                                                 .success(function (getData) {
