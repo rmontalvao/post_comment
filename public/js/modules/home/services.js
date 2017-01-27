@@ -15,11 +15,11 @@ angular.module('User').factory('UserService', ['$http', function ($http) {
             return $http.get('api/users/' + username);
         };
         user.GetByEmail = function (email) {
-            $http.get('api/users' + email);
+            return $http.get('api/users' + email);
         };
 
         user.Create = function (user) {
-            $http.post('api/users', user);
+            return $http.post('api/users', user);
         };
 
         user.Update = function (user) {

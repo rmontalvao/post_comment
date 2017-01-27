@@ -6,16 +6,17 @@ angular.module('User', []);
 angular.module('Home', []);
 angular.module('User', []);
 angular.module('Userprofile', []);
+angular.module('Post', []);
 
 angular.module('BasicHttpAuthExample', [
     'Authentication',
     'Home',
     'User',
     'Userprofile',
+    'Post',
     'ngRoute',
     'ngCookies'
 ])
-
         .config(['$routeProvider', function ($routeProvider) {
 
                 $routeProvider
@@ -32,6 +33,10 @@ angular.module('BasicHttpAuthExample', [
                         .when('/profile/:id', {
                             controller: 'UserprofileController',
                             templateUrl: 'js/modules/userprofile/views/userprofile.html'
+                        })
+                        .when('/post', {
+                            controller: 'PostController',
+                            templateUrl: 'js/modules/post/views/post.html'
                         })
                         .otherwise({redirectTo: '/login'});
             }])

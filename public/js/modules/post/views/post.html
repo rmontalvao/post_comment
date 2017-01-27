@@ -1,34 +1,4 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Laravel and Angular Comment System</title>
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> <!-- load bootstrap via cdn -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-        <style>
-            body 		{ padding-top:30px; }
-            form 		{ padding-bottom:20px; }
-            .post 	{ padding-bottom:30px; }
-            .comment 	{ padding-bottom:10px; }
-        </style>
-
-        <!-- JS -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script> <!-- load angular -->
-
-        <!-- ANGULAR -->
-        <!-- all angular resources will be loaded from the /public folder -->
-        <script src="js/controllers/mainCtrl.js"></script> <!-- load our controller -->
-        <script src="js/services/commentService.js"></script> <!-- load our service -->
-        <script src="js/services/postService.js"></script> <!-- load our service -->
-        <script src="js/app.js"></script> <!-- load our application -->
-
-    </head>
-    <!-- declare our angular app and controller -->
-    <body class="container" ng-app="commentApp" ng-controller="mainController">
-        <div class="col-md-8 col-md-offset-2">
+<div class="col-md-12">
 
             <!-- PAGE TITLE -->
             <div class="page-header">
@@ -59,6 +29,10 @@
             <div class="post" ng-hide="loading" ng-repeat="post in posts">
                 <h2>Post #{{ post.id}} <small>by : {{ post.user.name}}</small></h2>
                 <p>{{ post.text}}</p>
+                <div class="action-btn">
+                    <a><span>8</span> <i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                    <a><span>1</span> <i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                </div>
                 <!--<p><a href="#" ng-click="deletePost(post.id)" class="text-muted">Delete</a></p>-->
                 <!-- THE COMMENTS -->
                 <div class="comment" ng-hide="loading" ng-repeat="comment in post.comments">
@@ -79,5 +53,4 @@
             </div>
 
         </div>
-    </body>
-</html>
+

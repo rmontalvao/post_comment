@@ -12,10 +12,21 @@ angular.module('Authentication')
                              ----------------------------------------------*/
                             $http.post('doLogin', {email: username, password: password})
                                     .success(function (response) {
-                                        console.log("response 1",response);
+                                        //console.log("1",response);
+                                        $rootScope.globals = {
+                                            currentUser: {
+                                                username: response.user.user_name,
+                                                authdata: response.user.api_token,
+                                                email: response.user.email,
+                                                name: response.user.name,
+                                                id: response.user.id
+                                            }
+                                        };
+                                        $http.defaults.headers.common['Authorization'] = 'Basic ' + response.api_token; // jshint ignore:line
+                                        $cookieStore.put('globals', $rootScope.globals);
+                                        //console.log("2",response);
                                         callback(response);
                                     });
-
                         };
 
                         service.SetCredentials = function (username, password) {
