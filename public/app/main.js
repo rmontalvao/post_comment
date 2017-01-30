@@ -22,21 +22,21 @@ angular.module('BasicHttpAuthExample', [
                 $routeProvider
                         .when('/login', {
                             controller: 'LoginController',
-                            templateUrl: 'js/modules/authentication/views/login.html',
+                            templateUrl: 'views/login.html',
                             hideMenus: true
                         })
 
                         .when('/', {
                             controller: 'HomeController',
-                            templateUrl: 'js/modules/home/views/home.html'
+                            templateUrl: 'views/home.html'
                         })
                         .when('/profile/:id', {
                             controller: 'UserprofileController',
-                            templateUrl: 'js/modules/userprofile/views/userprofile.html'
+                            templateUrl: 'views/userprofile.html'
                         })
                         .when('/post', {
                             controller: 'PostController',
-                            templateUrl: 'js/modules/post/views/post.html'
+                            templateUrl: 'views/post.html'
                         })
                         .otherwise({redirectTo: '/login'});
             }])

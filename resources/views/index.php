@@ -7,13 +7,13 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
         <style>
             .comment{
-                    margin: 0px 0px 0px 40px;
+                margin: 0px 0px 0px 40px;
             }
             .jumbotron .comment p{font-size: 12px;}
             .action-btn{margin-bottom: 20px;}
             .action-btn a{padding:0 5px; color: #000;}
             .action-btn span{padding-right: 2px;}
-    </style>
+        </style>
     </head>
 
     <body>
@@ -28,23 +28,24 @@
 
 
 
-        <script src="js/jquery-2.0.3.min.js"></script>
-        <script src="js/angular/lib/angular.js"></script>
-        <script src="js/angular/lib/angular-route.js"></script>
-        <script src="js/angular/lib/angular-cookies.js"></script>
-        <script src="js/main.js"></script>
+        <script src="app/js/jquery-2.0.3.min.js"></script>
+        <script src="app/lib/angular/angular.js"></script>
+        <script src="app/lib/angular/angular-route.js"></script>
+        <script src="app/lib/angular/angular-cookies.js"></script>
+        <script src="app/main.js"></script>
 
-        <script src="js/modules/authentication/services.js"></script>
-        <script src="js/modules/authentication/controllers.js"></script>
+        <script src="app/controllers/authControllers.js"></script>
+        <script src="app/controllers/homeControllers.js"></script>
+        <script src="app/controllers/postControllers.js"></script>
+        <script src="app/controllers/UserControllers.js"></script>
 
-        <script src="js/modules/home/services.js"></script>
-        <script src="js/modules/home/controllers.js"></script>
-        
-        <script src="js/modules/post/services.js"></script>
-        <script src="js/modules/post/controllers.js"></script>
-        
+        <script src="app/services/authServices.js"></script>
+        <script src="app/services/homeServices.js"></script>
+        <script src="app/services/postServices.js"></script>
+
+
 <!--        <script src="js/modules/userprofile/services.js"></script>-->
-        <script src="js/modules/userprofile/controllers.js"></script>
+        
     </body>
 
 </html>
