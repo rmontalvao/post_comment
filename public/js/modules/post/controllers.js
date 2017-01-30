@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('Post')
-
         .controller('PostController',
                 ['$scope', '$rootScope', '$http', 'PostService',
                     function ($scope, $rootScope, $http, PostService) {
@@ -36,7 +35,7 @@ angular.module('Post')
 
                                     });
                         };
-                        
+
                         $scope.submitComment = function (postId) {
                             $scope.loading = true;
                             $scope.commentData[postId].user_id = $scope.loginUser.id;
@@ -57,10 +56,10 @@ angular.module('Post')
 
                                     });
                         };
-                        
-                        $scope.likePost = function(postId){
+
+                        $scope.likePost = function (postId) {
                             $scope.loading = true;
-                            
+
                             PostService.Like(postId)
                                     .success(function (data) {
                                         $scope.postData = {};
@@ -76,8 +75,31 @@ angular.module('Post')
 
                                     });
                         };
-                    }]);
+                        $scope.dislikePost = function(postId){
+                            $scope.loading = true;
 
+                            PostService.Dislike(postId)
+                                    .success(function (data) {
+                                        $scope.postData = {};
+                                        // if successful, we'll need to refresh the post list
+                                        PostService.GetAll()
+                                                .success(function (getData) {
+                                                    $scope.posts = getData;
+                                                    $scope.loading = false;
+                                                });
+                                    })
+                                    .error(function (data) {
+                                        console.log(data);
 
+                                    });
+                        }
+                    }]).filter('objLength', function () {
+    return function (object) {
+        var count = 0;
 
-  
+        for (var i in object) {
+            count++;
+        }
+        return count;
+    };
+});

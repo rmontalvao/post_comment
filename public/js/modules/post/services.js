@@ -31,6 +31,10 @@ angular.module('Post').factory('PostService', ['$http', '$rootScope', function (
         post.Like = function (id) {
             return $http.post('api/post/like/' + id + "?api_token=" + api_token);
         };
+        
+        post.Dislike = function (id) {
+            return $http.post('api/post/dislike/' + id + "?api_token=" + api_token);
+        };
         return post;
     }]);
 

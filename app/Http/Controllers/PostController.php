@@ -16,7 +16,14 @@ class PostController extends Controller {
      * @return Response
      */
     public function index() {
-        $posts = Post::with('user', 'comments.user', 'likes')->get();
+
+        $results = Post::with(array('user', 'comments.user', 'likes'=>function($q){
+            $q->countLikes();
+        },'dislikes'=>function($q){
+            $q->countDislikes();
+        }));
+        $posts = $results->get();
+       
         return response()->json($posts, 200);
     }
 

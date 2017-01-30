@@ -21,5 +21,9 @@ class Post extends Model {
     public function likes() {
         return $this->hasMany(Like::class, 'post_id');
     }
+    
+    public function dislikes() {
+        return $this->hasMany(Like::class, 'post_id');
+    }
 
 }
