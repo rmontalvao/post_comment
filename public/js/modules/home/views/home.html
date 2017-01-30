@@ -10,8 +10,11 @@
         <li ng-repeat="user in users">
             {{user.user_name}} ({{user.email}})
             - <a href="#/profile/{{user.id}}" >Profile</a>
-            <a href="#" ng-click="deleteuser(user.id)">Delete</a>
+            | <a href="#" ng-click="deleteuser(user.id)">Delete</a>
         </li>
     </ul>
-    <p><a href="#/login">Logout</a></p>
+    <p>
+        <a href="#/post">Post</a>
+        <a href="#/login">Logout</a>
+    </p>
 </div>
